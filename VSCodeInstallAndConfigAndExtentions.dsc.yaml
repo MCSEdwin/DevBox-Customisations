@@ -15,7 +15,7 @@ properties:
       settings:
         GetScript: |
           @{
-            Result = ((Install-Module -Name vscode) -ne $null) -eq $true
+            $Result = ((Install-Module -Name vscode -Force) -ne $null) -eq $true
           }
         TestScript: |
           $false
