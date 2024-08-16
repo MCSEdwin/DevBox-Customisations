@@ -85,15 +85,6 @@ properties:
           # Copy the file, overwriting if it exists
           Copy-Item -Path $sourcePath -Destination $destinationPath -Force
 
-          
-    - resource: vscode/VSCodeExtension
-      directives:
-        description: Install ms-dynamics-smb Extension
-        allowPrerelease: false
-      settings:
-        Name: ms-dynamics-smb.al
-        Ensure: Present
-
     - resource: vscode/VSCodeExtension
       directives:
         description: Install al-code-outline Extension
@@ -101,7 +92,15 @@ properties:
       settings:
         Name: andrzejzwierzchowski.al-code-outline
         Ensure: Present
-
+        
+    - resource: vscode/VSCodeExtension
+      directives:
+        description: Install ms-dynamics-smb Extension
+        allowPrerelease: false
+      settings:
+        Name: ms-dynamics-smb.al
+        Ensure: Present
+        
     - resource: vscode/VSCodeExtension
       directives:
         description: Install nab-al-tools Extension
