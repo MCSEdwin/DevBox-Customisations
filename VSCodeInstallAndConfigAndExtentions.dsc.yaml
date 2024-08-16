@@ -9,6 +9,18 @@ properties:
         allowPrerelease: true
       settings:
         id: Microsoft.VisualStudioCode
+
+    - resource: PSDscResources/Script
+      id: install module    
+      settings:
+        GetScript: |
+          @{
+            $Result = ((Install-Module -Name vscode -Force) -ne $null) -eq $true
+          }
+        TestScript: |
+          $false
+        SetScript: |
+          $false
           
     - resource: PSDscResources/Script
       id: RestartVSCode    
