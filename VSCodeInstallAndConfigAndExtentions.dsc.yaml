@@ -85,7 +85,7 @@ properties:
           # Copy the file, overwriting if it exists
           Copy-Item -Path $sourcePath -Destination $destinationPath -Force
           
-           - resource: vscode/VSCodeExtension
+    - resource: vscode/VSCodeExtension
       directives:
         description: Install ms-dynamics-smb Extension
         allowPrerelease: false
