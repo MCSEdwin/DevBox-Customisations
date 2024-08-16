@@ -10,7 +10,7 @@ properties:
       settings:
         id: Microsoft.VisualStudioCode
 
-     - resource: PSDscResources/Script
+    - resource: PSDscResources/Script
       id: install module    
       settings:
         GetScript: |
