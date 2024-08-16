@@ -9,13 +9,26 @@ properties:
         allowPrerelease: true
       settings:
         id: Microsoft.VisualStudioCode
-        
+
+     - resource: PSDscResources/Script
+      id: install module    
+      settings:
+        GetScript: |
+          @{
+            Result = ((Install-Module -Name vscode) -ne $null) -eq $true
+          }
+        TestScript: |
+          $false
+        SetScript: |
+          $false
+          
     - resource: PSDscResources/Script
       id: RestartVSCode    
       settings:
         GetScript: |
+          Install-Module -Name vscode 
           @{
-            Result = ((Get-Process -Name 'Code' -ErrorAction SilentlyContinue) -ne $null) -eq $true
+          $Result = ((Get-Module -ListAvailable -Name Microsoft.Graph)-ne $null) -eq $true
           }
         TestScript: |
           $false
@@ -47,7 +60,7 @@ properties:
           Test-Path -Path $destinationPath
           $false
         SetScript: |
-          $url = "https://raw.githubusercontent.com/microsoft/devcenter-examples/main/devbox-accessibility/settings-file/vscode/settings.json"
+          $url = "https://raw.githubusercontent.com/Edwin-DC/DevBox-Customisations/main/settings.json"
           $filename = Split-Path -Path $url -Leaf
           $localPathForRemoteFile = "$env:USERPROFILE\Downloads\VSCodeSettingsFileFromRemote\$filename"
 
@@ -72,51 +85,58 @@ properties:
           # Copy the file, overwriting if it exists
           Copy-Item -Path $sourcePath -Destination $destinationPath -Force
           
-    - resource: vscode/VSCodeExtension
+           - resource: vscode/VSCodeExtension
       directives:
         description: Install ms-dynamics-smb Extension
-        allowPrerelease: true
+        allowPrerelease: false
       settings:
         Name: ms-dynamics-smb.al
+        Ensure: Present
 
     - resource: vscode/VSCodeExtension
       directives:
         description: Install al-code-outline Extension
-        allowPrerelease: true
+        allowPrerelease: false
       settings:
         Name: andrzejzwierzchowski.al-code-outline
+        Ensure: Present
 
     - resource: vscode/VSCodeExtension
       directives:
         description: Install nab-al-tools Extension
-        allowPrerelease: true
+        allowPrerelease: false
       settings:
         Name: nabsolutions.nab-al-tools
+        Ensure: Present
 
     - resource: vscode/VSCodeExtension
       directives:
         description: Install crs-al-language-extension Extension
-        allowPrerelease: true
+        allowPrerelease: false
       settings:
         Name: waldo.crs-al-language-extension
+        Ensure: Present
 
     - resource: vscode/VSCodeExtension
       directives:
         description: Install postman-for-vscode Extension
-        allowPrerelease: true
+        allowPrerelease: false
       settings:
         Name: Postman.postman-for-vscode
+        Ensure: Present
 
     - resource: vscode/VSCodeExtension
       directives:
         description: Install DotJoshJohnson Extension
-        allowPrerelease: true
+        allowPrerelease: false
       settings:
         Name: DotJoshJohnson.xml
+        Ensure: Present
 
     - resource: vscode/VSCodeExtension
       directives:
         description: Install copilot Extension
-        allowPrerelease: true
+        allowPrerelease: false
       settings:
         Name: GitHub.copilot
+        Ensure: Present
