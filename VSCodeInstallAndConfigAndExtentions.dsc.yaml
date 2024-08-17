@@ -3,12 +3,24 @@ properties:
   configurationVersion: 0.2.0
 
   resources:
-    - resource: Microsoft.Winget.DSC/WingetPackage
-      directives:
-        description: Install Visual Studio Code
-        allowPrerelease: true
+    - resource: PSDscResources/Script
+      id: install module    
       settings:
-        id: Microsoft.VisualStudioCode
+        GetScript: |
+           $vscodeUrl = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64"
+          $destination = "$env:TEMP\vscode_installer.exe"
+
+          # Download VS Code installer
+          Invoke-RestMethod -Uri $vscodeUrl -OutFile $destination
+
+          # Install VS Code silently
+          Start-Process -Wait -FilePath $destination -ArgumentList /verysilent, /mergetasks=!runcode
+
+        TestScript: |
+          $false
+        SetScript: |
+          $false
+          
 
     - resource: PSDscResources/Script
       id: install module    
@@ -26,7 +38,6 @@ properties:
       id: RestartVSCode    
       settings:
         GetScript: |
-          Install-Module -Name vscode 
           @{
           $Result = ((Get-Module -ListAvailable -Name Microsoft.Graph)-ne $null) -eq $true
           }
