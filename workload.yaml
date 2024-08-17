@@ -1,0 +1,13 @@
+$schema: "1.0"
+name: "devbox-customization"
+tasks:
+  - name: winget
+    parameters:
+      downloadUrl: 'https://raw.githubusercontent.com/MCSEdwin/DevBox-Customisations/main/RepoClone.dsc.yaml'
+      configurationFile: 'C:\WinGetConfig\RepoClone.dsc.yaml'
+      runAsUser: true
+  - name: winget
+    parameters:
+      downloadUrl: 'https://raw.githubusercontent.com/MCSEdwin/DevBox-Customisations/main/VSCodeInstallAndExtensionsOnly.dsc.yaml'
+      configurationFile: 'C:\WinGetConfig\VSCodeInstallAndExtentionsOnly.dsc.yaml'
+      runAsUser: true
