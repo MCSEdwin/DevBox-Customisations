@@ -97,5 +97,17 @@ properties:
           # Copy the file, overwriting if it exists
           Copy-Item -Path $sourcePath -Destination $destinationPath -Force
 
+    - resource: Microsoft.Winget.DSC/WingetPackage
+      directives:
+        description: Install Desktop Postman
+        allowPrerelease: true
+      settings:
+        id: Postman.Postman
 
+    - resource: Microsoft.Winget.DSC/WingetPackage
+      directives:
+        description: Install Microsoft Report Builder
+        allowPrerelease: true
+      settings:
+        id: Microsoft.ReportBuilder
    
